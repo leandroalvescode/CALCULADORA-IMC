@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'cartao_padrao.dart';
+import 'conteudo_icone.dart';
 
 const Color corBotaoPadrao =Color(0xFF9E9E9E);
+const Color corFundo = Color(0xFF565656);
 const alturaContainerInferior = 80.0;
+const Color corInativaCartao = Color(0xFF7E7E7E);
+enum Sexo {masculino , feminino}
 
 class TelaPrincipal extends StatefulWidget {
   @override
@@ -10,9 +15,34 @@ class TelaPrincipal extends StatefulWidget {
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
+
+Color corBotaoMarculino = corInativaCartao;
+Color corBotaoFemino = corInativaCartao;
+
+atualizarCor(int sexo){
+  if(sexo == 1){
+    if(corBotaoMarculino == corInativaCartao){
+      corBotaoMarculino = corBotaoPadrao;
+      corBotaoFemino = corInativaCartao;
+    }
+    else{corBotaoMarculino = corInativaCartao;
+    }
+  }
+
+  if(sexo == 2){
+    if(corBotaoFemino == corInativaCartao){
+      corBotaoFemino = corBotaoPadrao;
+      corBotaoMarculino = corInativaCartao;
+    }
+    else{corBotaoFemino = corInativaCartao;
+    }
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:corFundo ,
       appBar: AppBar(
         title: Text('CALCULADORA IMC'),
       ),
@@ -22,23 +52,34 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             child: Row(
               children: [
                 Expanded(
-                  child: CartaoPadrao(
-                    filhoCartao: Column(
-                      mainAxisAlignment: MainAxisAlignment.centeri,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.mars,
-                          size:70.0),
-                          Text("MASCULINO")
-                      ],
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        atualizarCor(1);
+                      });
+                    },
+                    child: CartaoPadrao(
+                      filhoCartao: DesignCartaoSuperior(
+                        genero:"MASCULINO",
+                        iconeGenero:FontAwesomeIcons.mars),
+                      cor:corBotaoMarculino,
                     ),
-                    cor:corBotaoPadrao
-                  )
+                  ),
                 ),
                 Expanded(
-                  child: CartaoPadrao(
-                    cor:corBotaoPadrao,
-                    ),
+                  child: GestureDetector(
+                    onTap:(){
+                      setState(() {
+                        atualizarCor(2);
+                      });
+                    },
+                    child: CartaoPadrao(
+                      filhoCartao:DesignCartaoSuperior(
+                        genero: "FEMININO", 
+                        iconeGenero: FontAwesomeIcons.venus),
+                      cor:corBotaoFemino,
+                      ),
+                  ),
                 ),
               ],
             ),
@@ -70,26 +111,6 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
           width: double.infinity,
         ),
         ],
-      ),
-    );
-  }
-}
-
-class CartaoPadrao extends StatelessWidget {
-
-  final Color cor;
-  final Widget? filhoCartao;
-
-  CartaoPadrao({required this.cor, this.filhoCartao});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: filhoCartao,
-      margin: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-      color: cor,
-        borderRadius: BorderRadius.circular(10),
       ),
     );
   }
