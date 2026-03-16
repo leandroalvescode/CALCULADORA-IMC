@@ -6,8 +6,12 @@ import 'conteudo_icone.dart';
 const Color corBotaoPadrao =Color(0xFF9E9E9E);
 const Color corFundo = Color(0xFF565656);
 const alturaContainerInferior = 80.0;
-const Color corInativaCartao = Color(0xFF7E7E7E);
-enum Sexo {masculino , feminino}
+const Color corBotaoInativo = Color(0xFF7E7E7E);
+
+enum Sexo {
+  masculino,
+  feminino
+  }
 
 class TelaPrincipal extends StatefulWidget {
   @override
@@ -16,28 +20,33 @@ class TelaPrincipal extends StatefulWidget {
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
 
-Color corBotaoMarculino = corInativaCartao;
-Color corBotaoFemino = corInativaCartao;
+  Sexo? sexoSelecionado;
 
-atualizarCor(int sexo){
-  if(sexo == 1){
-    if(corBotaoMarculino == corInativaCartao){
-      corBotaoMarculino = corBotaoPadrao;
-      corBotaoFemino = corInativaCartao;
-    }
-    else{corBotaoMarculino = corInativaCartao;
-    }
-  }
 
-  if(sexo == 2){
-    if(corBotaoFemino == corInativaCartao){
-      corBotaoFemino = corBotaoPadrao;
-      corBotaoMarculino = corInativaCartao;
-    }
-    else{corBotaoFemino = corInativaCartao;
-    }
-  }
-}
+// Color corBotaoMasculino = corBotaoInativo;
+// Color corBotaoFemino = corBotaoInativo;
+
+// atualizarCor(Sexo sexoSelecionado){
+//   if(sexoSelecionado == Sexo.masculino){
+//     if(corBotaoMasculino == corBotaoInativo){
+//       corBotaoMasculino = corBotaoPadrao;
+//       corBotaoFemino = corBotaoInativo;
+//     }
+//     else{corBotaoMasculino = corBotaoInativo;
+//     }
+//   }
+
+//   if(sexoSelecionado == Sexo.feminino){
+//     if(corBotaoFemino == corBotaoInativo){
+//       corBotaoFemino = corBotaoPadrao;
+//       corBotaoMasculino = corBotaoInativo;
+//     }
+//     else{corBotaoFemino = corBotaoInativo;
+//     }
+//   }
+// }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,14 +64,14 @@ atualizarCor(int sexo){
                   child: GestureDetector(
                     onTap: (){
                       setState(() {
-                        atualizarCor(1);
+                        sexoSelecionado = Sexo.masculino;
                       });
                     },
                     child: CartaoPadrao(
                       filhoCartao: DesignCartaoSuperior(
                         genero:"MASCULINO",
                         iconeGenero:FontAwesomeIcons.mars),
-                      cor:corBotaoMarculino,
+                      cor:sexoSelecionado == Sexo.masculino ? corBotaoPadrao : corBotaoInativo,
                     ),
                   ),
                 ),
@@ -70,14 +79,14 @@ atualizarCor(int sexo){
                   child: GestureDetector(
                     onTap:(){
                       setState(() {
-                        atualizarCor(2);
+                        sexoSelecionado = Sexo.feminino;
                       });
                     },
                     child: CartaoPadrao(
                       filhoCartao:DesignCartaoSuperior(
                         genero: "FEMININO", 
                         iconeGenero: FontAwesomeIcons.venus),
-                      cor:corBotaoFemino,
+                      cor:sexoSelecionado == Sexo.feminino ? corBotaoPadrao : corBotaoInativo,
                       ),
                   ),
                 ),
