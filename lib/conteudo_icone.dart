@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-const descricaoTextStyle = TextStyle(
-   fontSize: 20,
-   color: Colors.black
-          );
+import 'constantes.dart';
 
 class DesignCartaoSuperior extends StatelessWidget {
    
@@ -24,7 +20,7 @@ class DesignCartaoSuperior extends StatelessWidget {
           ),
           SizedBox(height: 15.0),
           Text(genero,
-          style:descricaoTextStyle
+          style:kDescricaoTextStyleTextoPreto
           ),
       ],
     );
