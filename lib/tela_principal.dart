@@ -19,6 +19,8 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
 
   Sexo? sexoSelecionado;
   int altura = 180;
+  int peso = 60;
+  int idade = 18;
   
 
 // Color corBotaoMasculino = corBotaoInativo;
@@ -129,12 +131,85 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
           child: Row(children: [
             Expanded(
                 child: CartaoPadrao(
-                  cor:kCorBotaoPadrao
+                  cor:kCorBotaoPadrao,
+                  filhoCartao: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("PESO",
+                      style: kDescricaoTextStyleTextoPreto,
+                      ),
+                      Text(peso.toString(),
+                      style: kDescricaoTextStyleTextoBranco,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FloatingActionButton(
+                            onPressed:(){
+                            setState(() {
+                              peso++;
+                            });
+                          },
+                          child: Icon(Icons.add),
+                          backgroundColor:kCorBotaoInativo,
+                          elevation: 5.0,
+                          ),
+                          SizedBox(width:10.0),
+                          FloatingActionButton(
+                            onPressed:(){
+                            setState(() {
+                              peso--;
+                            });
+                          },
+                          child: Icon(Icons.remove),
+                          backgroundColor:kCorBotaoInativo,
+                          elevation: 5.0,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 )
               ),
               Expanded(
                 child: CartaoPadrao(
-                  cor:kCorBotaoPadrao
+                  cor:kCorBotaoPadrao,
+                  filhoCartao: Column(
+                    children: [
+                      Text("IDADE",
+                      style: kDescricaoTextStyleTextoPreto,
+                      ),
+                      Text(idade.toString(),
+                      style: kDescricaoTextStyleTextoBranco,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FloatingActionButton(
+                            onPressed:(){
+                            setState(() {
+                              idade++;
+                            });
+                          },
+                          child: Icon(Icons.add),
+                          backgroundColor:kCorBotaoInativo,
+                          elevation: 5.0,
+                          ),
+                          SizedBox(width:10.0),
+                          FloatingActionButton(
+                            onPressed:(){
+                            setState(() {
+                              idade--;
+                            });
+                          },
+                          child: Icon(Icons.remove),
+                          backgroundColor:kCorBotaoInativo,
+                          elevation: 5.0,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
           ],
