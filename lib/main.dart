@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'tela_principal.dart';
+import 'package:imccalc_flutter/telas/tela_resultado.dart';
+import 'telas/tela_principal.dart';
+
 
 void main() => runApp(CalculadoraIMC());
 
@@ -11,7 +13,11 @@ class CalculadoraIMC extends StatelessWidget {
         primaryColor: Color(0xFF3D3D3D),
         scaffoldBackgroundColor: Color(0xFF898989),
       ),
-      home: TelaPrincipal(),
+      initialRoute: 'principal',
+      routes: {
+        'principal' : (context) => TelaPrincipal(),
+        'resultado' : (context) => TelaResultado(),
+        },
     );
   }
 }

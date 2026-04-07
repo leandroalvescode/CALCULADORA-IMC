@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'cartao_padrao.dart';
-import 'conteudo_icone.dart';
-import 'constantes.dart';
+import 'package:imccalc_flutter/telas/tela_resultado.dart';
+import '../componentes/cartao_padrao.dart';
+import '../componentes/conteudo_icone.dart';
+import '../constantes.dart';
+import '../componentes/botao_inferior.dart';
+import '../componentes/botao_arredondado.dart';
 
 
 enum Sexo {
@@ -22,32 +25,6 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
   int peso = 60;
   int idade = 18;
   
-
-// Color corBotaoMasculino = corBotaoInativo;
-// Color corBotaoFemino = corBotaoInativo;
-
-// atualizarCor(Sexo sexoSelecionado){
-//   if(sexoSelecionado == Sexo.masculino){
-//     if(corBotaoMasculino == corBotaoInativo){
-//       corBotaoMasculino = corBotaoPadrao;
-//       corBotaoFemino = corBotaoInativo;
-//     }
-//     else{corBotaoMasculino = corBotaoInativo;
-//     }
-//   }
-
-//   if(sexoSelecionado == Sexo.feminino){
-//     if(corBotaoFemino == corBotaoInativo){
-//       corBotaoFemino = corBotaoPadrao;
-//       corBotaoMasculino = corBotaoInativo;
-//     }
-//     else{corBotaoFemino = corBotaoInativo;
-//     }
-//   }
-// }
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,26 +121,26 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          FloatingActionButton(
-                            onPressed:(){
-                            setState(() {
-                              peso++;
-                            });
-                          },
-                          child: Icon(Icons.add),
-                          backgroundColor:kCorBotaoInativo,
-                          elevation: 5.0,
+                          BotaoArredondado(
+                            icone: FontAwesomeIcons.minus,
+                            aoPressionar: (){
+                              setState(() {
+                                peso--;
+                              });
+                            },
                           ),
-                          SizedBox(width:10.0),
-                          FloatingActionButton(
-                            onPressed:(){
-                            setState(() {
-                              peso--;
-                            });
-                          },
-                          child: Icon(Icons.remove),
-                          backgroundColor:kCorBotaoInativo,
-                          elevation: 5.0,
+
+                          SizedBox(
+                            width:10.0
+                            ),
+
+                          BotaoArredondado(
+                            icone:FontAwesomeIcons.plus,
+                            aoPressionar: (){
+                              setState(() {
+                                peso++;
+                              });
+                            },
                           ),
                         ],
                       ),
@@ -175,6 +152,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                 child: CartaoPadrao(
                   cor:kCorBotaoPadrao,
                   filhoCartao: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("IDADE",
                       style: kDescricaoTextStyleTextoPreto,
@@ -185,27 +163,25 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          FloatingActionButton(
-                            onPressed:(){
-                            setState(() {
-                              idade++;
-                            });
-                          },
-                          child: Icon(Icons.add),
-                          backgroundColor:kCorBotaoInativo,
-                          elevation: 5.0,
+                          BotaoArredondado(
+                            icone: FontAwesomeIcons.minus, 
+                            aoPressionar: (){
+                              setState(() {
+                                idade--;
+                              });
+                            }
+                            ),
+                            SizedBox(
+                            width: 10.0,
                           ),
-                          SizedBox(width:10.0),
-                          FloatingActionButton(
-                            onPressed:(){
-                            setState(() {
-                              idade--;
-                            });
-                          },
-                          child: Icon(Icons.remove),
-                          backgroundColor:kCorBotaoInativo,
-                          elevation: 5.0,
-                          ),
+                            BotaoArredondado(
+                            icone: FontAwesomeIcons.plus, 
+                            aoPressionar: (){
+                              setState(() {
+                                idade++;
+                              });
+                            }
+                            ),
                         ],
                       ),
                     ],
@@ -215,11 +191,15 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
           ],
           ),
         ),
-        Container(
-          color: Colors.deepOrange,
-          margin: EdgeInsets.only(top: 10.0),
-          height: kAlturaContainerInferior,
-          width: double.infinity,
+        BotaoInferior(
+          tituloBotaoInferior: "CALCULAR",
+          aoPressionar: (){
+          Navigator.push(context, 
+          MaterialPageRoute(
+            builder: (context) => TelaResultado()
+            ),
+          );
+        },
         ),
         ],
       ),
