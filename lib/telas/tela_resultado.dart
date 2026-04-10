@@ -3,7 +3,14 @@ import 'package:imccalc_flutter/constantes.dart';
 import '../componentes/cartao_padrao.dart';
 import '../componentes/botao_inferior.dart';
 
+
 class TelaResultado extends StatelessWidget{
+
+  TelaResultado({required this.resultadoIMC,required this.resultadoInterpretacao,required this.resultadoTexto});
+
+  final String resultadoIMC;
+  final String resultadoTexto;
+  final String resultadoInterpretacao;
 
   @override
   Widget build(BuildContext context){
@@ -32,13 +39,13 @@ class TelaResultado extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("NORMAL",
+                Text(resultadoTexto ,
                 style: KResultadoTextStyle,
                 ),
-                Text("14.8",
+                Text(resultadoIMC.toUpperCase(),
                 style: KIMCTextStyle,
                 ),
-                Text("O seu IMC está baixo, você precisa comer mais!",
+                Text(resultadoInterpretacao,
                 style: KCorpoTextStyle,
                 ),
               ],

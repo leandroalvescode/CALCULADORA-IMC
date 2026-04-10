@@ -6,7 +6,7 @@ import '../componentes/conteudo_icone.dart';
 import '../constantes.dart';
 import '../componentes/botao_inferior.dart';
 import '../componentes/botao_arredondado.dart';
-
+import '../calculadora_imc.dart';
 
 enum Sexo {
   masculino,
@@ -194,9 +194,19 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
         BotaoInferior(
           tituloBotaoInferior: "CALCULAR",
           aoPressionar: (){
+            
+            CalculadoraIMC calc =CalculadoraIMC(
+              altura: altura, 
+              peso: peso 
+              );
+
           Navigator.push(context, 
           MaterialPageRoute(
-            builder: (context) => TelaResultado()
+            builder: (context) => TelaResultado(
+              resultadoIMC: calc.calcularIMC(),
+              resultadoTexto:calc.obterResultado() ,
+              resultadoInterpretacao:calc.obterInterpretacao() ,
+            )
             ),
           );
         },

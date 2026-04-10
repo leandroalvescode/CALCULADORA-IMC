@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:imccalc_flutter/telas/tela_resultado.dart';
 import 'telas/tela_principal.dart';
 
 
@@ -16,7 +15,6 @@ class CalculadoraIMC extends StatelessWidget {
       initialRoute: 'principal',
       routes: {
         'principal' : (context) => TelaPrincipal(),
-        'resultado' : (context) => TelaResultado(),
         },
     );
   }

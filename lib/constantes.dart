@@ -18,16 +18,16 @@ const KTituloTextStyle = TextStyle(
 );
 const KResultadoTextStyle = TextStyle(
   color: Color(0xFF00D467),
-  fontSize: 22.0,
+  fontSize: 25.0,
   fontWeight: FontWeight.bold
 );
 const KIMCTextStyle = TextStyle(
-  fontSize: 100,
+  fontSize:100.0,
   fontWeight: FontWeight.bold,
   color: Colors.black
 );
 const KCorpoTextStyle = TextStyle(
-  fontSize:22.0,
+  fontSize:20.0,
   color: Colors.black
 ) ;
 
